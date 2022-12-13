@@ -1,10 +1,71 @@
 <script>
+  import { loadScript } from "@paypal/paypal-js"
+
   let quantity = 0
   let unitPrice = 34.99
   let totalCost = 0
+  let resultData
+
+  let isPaymentVisible = false
+  let isPaymentSuccessful = false
 
   const handleCheckout = () => {
     totalCost = quantity * unitPrice
+    isPaymentVisible = true
+
+    loadScript({ 
+        "client-id": `${ import.meta.env.VITE_PAYPAL_CLIENT_ID }`, 
+        "disable-funding": "paylater"
+      }).then((paypal) => {
+        paypal
+          .Buttons({
+            style: {
+              color: "blue",
+              shape: "rect",
+              label: "paypal",
+              layout: "vertical"
+            },
+            onInit: function(data, actions) {
+              // Set the z-index of the iframe injected by Paypal so it won't
+              // overlay the top nav bar
+              const iframes = document.getElementsByTagName("iframe")
+              if (iframes.length === 0) {
+                throw new Error("PayPal iframe not found")
+              }
+              iframes[0].style.zIndex = 5
+            },
+            createOrder: function (data, actions) {
+              // Set up the transaction
+              console.log('Create order: ', data)
+
+              // Process the payment if no errors were detected
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: totalCost,
+                    },
+                  },
+                ],
+              })
+            },
+            onApprove: function (data, actions) {
+              // Capture order after payment approved
+              resultData = data
+              return actions.order.capture().then(function (details) {
+                resultDetails = details
+                console.log("Captured order: ", details)
+                isPaymentSuccessful = true
+              })
+            },
+            
+            onError: function (err) {
+              // Log error if something goes wrong during approval
+              console.log("Something went wrong", err)
+            },
+          })
+          .render("#paypal-button-container")
+        })
   }
 </script>
 
@@ -53,4 +114,10 @@
       </div>
     </div>
   </div>
+
+  {#if isPaymentVisible}
+    <div class="flex flex-col items-center bg-white">
+      <div id="paypal-button-container" />
+    </div>
+  {/if}
 </section>
