@@ -6,6 +6,7 @@
   let unitPrice = 34.99
   let totalCost = 0
   let resultData
+  let resultDetails
 
   let isPaymentVisible = false
   let isPaymentSuccessful = false
@@ -29,11 +30,13 @@
             onInit: function(data, actions) {
               // Set the z-index of the iframe injected by Paypal so it won't
               // overlay the top nav bar
+              /*
               const iframes = document.getElementsByTagName("iframe")
               if (iframes.length === 0) {
                 throw new Error("PayPal iframe not found")
               }
               iframes[0].style.zIndex = 5
+              */
             },
             createOrder: function (data, actions) {
               // Set up the transaction
