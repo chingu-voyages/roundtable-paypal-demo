@@ -1,5 +1,6 @@
 <script>
   import { loadScript } from "@paypal/paypal-js"
+  import Header from '../components/header.svelte'
 
   let quantity = 0
   let unitPrice = 34.99
@@ -69,14 +70,9 @@
   }
 </script>
 
-<section class="ml-6 mr-8">
-  <div class="flex flex-row h-full w-full justify-center pt-4">
-    <div class="place-self-center pt-4 lg:pt-0">
-      <img class="ml-20 w-16 h-16 invisible md:visible" 
-        src="Chingu.jpg" alt="Chingu Logo"/>
-      <h1 class="pt-4 text-3xl font-bold underline">Chingu Roundtable</h1>
-    </div>
-  </div>
+<Header/>
+
+<section class="pt-20 ml-6 mr-8">
   <h2 class="mt-4 text-2xl font-bold">How to integrate PayPal REST in your apps</h2>
   <p class="mt-4 text-xl">
     This app was built to provide a test platform to show how to integrate PayPal 
