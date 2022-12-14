@@ -11,6 +11,10 @@
   let isPaymentVisible = false
   let isPaymentSuccessful = false
 
+  const updateTotalCost = (event) => {
+    totalCost = quantity * unitPrice
+  }
+
   const handleCheckout = () => {
     totalCost = quantity * unitPrice
     isPaymentVisible = true
@@ -98,7 +102,7 @@
       <label for="quantity">
         Quantity:
         <input class="border w-12" id="quantity" name="quantity" type="number"
-        bind:value={ quantity } on:input={ quantity }>
+        bind:value={ quantity } on:input={ quantity } on:click={ updateTotalCost }>
       </label>
       <label for="unitPrice">
         Unit price:
@@ -106,7 +110,7 @@
         bind:value={ unitPrice } disabled>
       </label>
       <div class="mt-4">
-        Total cost: { totalCost }
+        Total cost: ${ totalCost }
       </div>
       <div class="flex flex-col items-center mt-4 w-1/6 bg-green-500 border rounded-lg">
         <button class="font-bold" on:click={ handleCheckout }>Checkout</button>
