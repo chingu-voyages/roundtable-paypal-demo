@@ -81,15 +81,18 @@
 
 <section class="pt-20 ml-6 mr-8">
   <h2 class="mt-4 text-2xl font-bold">How to integrate PayPal REST in your apps</h2>
-  <p class="mt-4 text-xl">
+  <div class="mt-4 text-xl">
     This app was built to provide a test platform to show how to integrate PayPal 
     payments into your applications. It utilizes the PayPal REST API and 
-    `@paypal/paypal-js` to add payment options to a checkout form.
-
+    `@paypal/paypal-js` to add payment options to a checkout form. You can learn
+    more about the PayPal JS SDK <a class="underline italic text-blue-500" target="_blank noreferrer" 
+    href="https://developer.paypal.com">here</a>
+  </div>
+  <div class="mt-4 text-xl">
     This will be referenced in an upcoming weekly Chingu Roundtable in our
     <a class="underline italic text-blue-500" target="_blank noreferrer" 
       href="https://www.youtube.com/playlist?list=PLmnPfbM4_HyszkLRkLtlUgoMCHer3jpg7">YouTube channel.</a>
-  </p>
+  </div>
 </section>
 
 <!-- Mock Checkout Form -->
