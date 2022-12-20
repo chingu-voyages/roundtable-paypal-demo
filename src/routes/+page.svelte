@@ -34,13 +34,11 @@
             onInit: function(data, actions) {
               // Set the z-index of the iframe injected by Paypal so it won't
               // overlay the top nav bar
-              /*
               const iframes = document.getElementsByTagName("iframe")
               if (iframes.length === 0) {
                 throw new Error("PayPal iframe not found")
               }
               iframes[0].style.zIndex = 5
-              */
             },
             createOrder: function (data, actions) {
               // Set up the transaction
@@ -122,7 +120,7 @@
   </div>
 
   {#if isPaymentVisible}
-    <div class="flex flex-col items-center bg-white">
+    <div class="flex flex-col w-full items-center bg-white">
       <div id="paypal-button-container" />
     </div>
   {/if}
